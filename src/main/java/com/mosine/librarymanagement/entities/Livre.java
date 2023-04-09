@@ -1,9 +1,9 @@
-package entities;
+package com.mosine.librarymanagement.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-import enumerations.ListeEditeur;
+import com.mosine.librarymanagement.enumerations.ListeEditeur;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
