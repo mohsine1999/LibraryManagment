@@ -1,34 +1,40 @@
 package com.mosine.librarymanagement.entities;
+import java.util.Date;
 
-import java.io.Serializable;
-import java.sql.Date;
-
-import com.mosine.librarymanagement.enumerations.ListeEditeur;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
-public class Livre implements Serializable {
+public class Livre {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int isbn;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ISBN;
     private String titre;
     private String description;
-    private Date dateEdition;
-    private ListeEditeur editeur;
 
-    public Livre() {
+    @Temporal(TemporalType.DATE)
+    private Date date_edition;
+
+    @Enumerated(EnumType.STRING)
+    private Editeur editeur;
+
+    @ManyToOne
+    private Auteur auteur;
+
+    public int getISBN() {
+        return ISBN;
     }
 
-    public int getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(int isbn) {
-        this.isbn = isbn;
+    public void setISBN(int iSBN) {
+        ISBN = iSBN;
     }
 
     public String getTitre() {
@@ -47,19 +53,19 @@ public class Livre implements Serializable {
         this.description = description;
     }
 
-    public Date getDateEdition() {
-        return dateEdition;
+    public Date getDate_edition() {
+        return date_edition;
     }
 
-    public void setDateEdition(Date dateEdition) {
-        this.dateEdition = dateEdition;
+    public void setDate_edition(Date date_edition) {
+        this.date_edition = date_edition;
     }
 
-    public ListeEditeur getEditeur() {
+    public Editeur getEditeur() {
         return editeur;
     }
 
-    public void setEditeur(ListeEditeur editeur) {
+    public void setEditeur(Editeur editeur) {
         this.editeur = editeur;
     }
 
@@ -70,8 +76,4 @@ public class Livre implements Serializable {
     public void setAuteur(Auteur auteur) {
         this.auteur = auteur;
     }
-
-    @ManyToOne
-    private Auteur auteur;
-
 }
